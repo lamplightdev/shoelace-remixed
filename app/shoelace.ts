@@ -54,7 +54,7 @@ export function useShoelace({ URL }: { URL: string }) {
         });
       }
     );
-  }, [URL, components]);
+  }, [URL]);
 
   return components;
 }
