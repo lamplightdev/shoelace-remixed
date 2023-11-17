@@ -1,5 +1,5 @@
 import { cssBundleHref } from '@remix-run/css-bundle';
-import { json, type LinksFunction } from '@remix-run/node';
+import { json, LoaderFunctionArgs, type LinksFunction } from '@remix-run/node';
 import {
   Link,
   Links,
@@ -19,8 +19,9 @@ export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
 ];
 
-export const loader = async () => {
-  return json({ BASE_URL: process.env.BASE_URL! });
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const url = new URL(request.url);
+  return json({ BASE_URL: url.origin });
 };
 
 export default function App() {
