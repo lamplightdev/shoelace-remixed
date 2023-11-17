@@ -4,9 +4,10 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev --manual",
+    "build": "npm run shoelace-assets && remix build",
+    "dev": "npm run shoelace-assets && remix dev --manual",
     "start": "remix-serve ./build/index.js",
+    "shoelace-assets": "mkdir -p public/shoelace/assets && cp -r node_modules/@shoelace-style/shoelace/dist/assets/* public/shoelace/assets",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -14,6 +15,7 @@
     "@remix-run/node": "^2.3.0",
     "@remix-run/react": "^2.3.0",
     "@remix-run/serve": "^2.3.0",
+    "@shoelace-style/shoelace": "^2.11.2",
     "isbot": "^3.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
